@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DBE3A803-BA61-4DC3-ADD1-76070C03C694}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>FlatUIControls</RootNamespace>
+    <AssemblyName>FlatUIControls</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FlatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FlatForm.Designer.cs">
+      <DependentUpon>FlatForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FlatMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FlatMenu.Designer.cs">
+      <DependentUpon>FlatMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FlatMenuItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FlatMenuItem.Designer.cs">
+      <DependentUpon>FlatMenuItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FlatSliderMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FlatSliderMenu.Designer.cs">
+      <DependentUpon>FlatSliderMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FlatForm.resx">
+      <DependentUpon>FlatForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FlatMenu.resx">
+      <DependentUpon>FlatMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FlatMenuItem.resx">
+      <DependentUpon>FlatMenuItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FlatSliderMenu.resx">
+      <DependentUpon>FlatSliderMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trophy_cup_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LogoWhite - Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_96px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\subtract_96px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maximize_button_96px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maximize_button_104px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maximize_button_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\full_screen_96px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maximize_window_96px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maximize_window_96px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maximize_button_96px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maximize_button_96px2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maximize_button_960px.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
