@@ -19,6 +19,34 @@ namespace FlatUIControls
             else if (Caption != null && Caption.Length == 0) Caption = "MenuItem";
 
         }
+
+        public FlatMenuItem(string Key,String caption, ImageList imageList, int imageIndex)
+        {
+            InitializeComponent();
+            this.Caption = caption;
+            this.ImageList = imageList;
+            this.ImageIndex=imageIndex;
+            this.Key = Key;
+        }
+
+        public FlatMenuItem(string Key, String caption, ImageList imageList, int imageIndex,FlatMenuItem parent)
+        {
+            InitializeComponent();
+            this.Caption = caption;
+            this.ImageList = imageList;
+            this.ImageIndex = imageIndex;
+            this.Key = Key;
+            this.Parent = parent;
+        }
+
+        public FlatMenuItem(string Key, String caption)
+        {
+            InitializeComponent();
+            this.Caption = caption;
+            this.Key = Key;
+        }
+
+
         public FlatSliderMenu SliderMenuParent;
 
         private FlatMenuItem _Parent = null;
@@ -256,6 +284,13 @@ namespace FlatUIControls
                 this.child.BackColor = Color.FromArgb(10, _ThemeColor);
                 this.child.ThemeColor = _ThemeColor;
             }
+        }
+
+        private string _Key;
+        public string Key
+        {
+            get { return _Key; }
+            set { this._Key = value; }
         }
 
     }

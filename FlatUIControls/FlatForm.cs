@@ -62,7 +62,10 @@ namespace FlatUIControls
             }
 
             e.Graphics.FillPolygon(new SolidBrush(Color.Gray), new Point[] { new Point(this.Width - 9, this.Height - 1), new Point(this.Width - 1, this.Height - 9), new Point(this.Width - 1, this.Height- 1) });
-
+            if (pMain.Left!=1)pMain.Left = 1;
+            if(pMain.Top!= 5 + bExit.Height) pMain.Top = 5 + bExit.Height;
+            if(pMain.Width!=Width-2)pMain.Width = Width-2;
+            if(pMain.Height!=Height-6-bExit.Height)pMain.Height = Height-6-bExit.Height;
         }
 
         public Color _ThemeColor= Color.FromArgb(239, 41, 84);
@@ -175,8 +178,7 @@ namespace FlatUIControls
                 minimizeInitial = true; bMinimizePoints = new Point[2];
                 bMinimizePoints[0] = new Point(Width / 2 - 5, Height / 2);
                 bMinimizePoints[1] = new Point(Width / 2 + 5, Height / 2);
-            }
-            if(bMinimaizeMouseOver) bMinimizePen = new Pen(Color.White);
+            }            if(bMinimaizeMouseOver) bMinimizePen = new Pen(Color.White);
             else bMinimizePen = new Pen(ThemeColor);
             e.Graphics.DrawLine(bMinimizePen, bMinimizePoints[0], bMinimizePoints[1]);
         }
@@ -209,6 +211,12 @@ namespace FlatUIControls
         private void bEMinimize_MouseLeave(object sender, EventArgs e)
         {
             bMinimaizeMouseOver = false;
+        }
+
+        public FlatSliderMenu SliderMenu
+        {
+            get { return this.flatSliderMenu1; }
+            set { this.flatSliderMenu1 = value;}
         }
     }
 }
