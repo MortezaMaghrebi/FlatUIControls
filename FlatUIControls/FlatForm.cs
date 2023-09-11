@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -25,6 +26,7 @@ namespace FlatUIControls
             bExit.Left = this.Width - bExit.Width;
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.ResizeRedraw, true);
+           
         }
         private const int cGrip = 16;      // Grip size
         private const int cCaption = 32;   // Caption bar height;
@@ -66,6 +68,8 @@ namespace FlatUIControls
             if(pMain.Top!= 5 + bExit.Height) pMain.Top = 5 + bExit.Height;
             if(pMain.Width!=Width-2)pMain.Width = Width-2;
             if(pMain.Height!=Height-6-bExit.Height)pMain.Height = Height-6-bExit.Height;
+
+
         }
 
         public Color _ThemeColor= Color.FromArgb(239, 41, 84);
@@ -88,7 +92,7 @@ namespace FlatUIControls
 
         private void FlatForm_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void bExit_Click(object sender, EventArgs e)

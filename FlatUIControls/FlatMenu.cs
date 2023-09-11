@@ -32,6 +32,7 @@ namespace FlatUIControls
         public int getCurrentScroll()
         {
             Application.DoEvents();
+            if (pPanelContainer.Height < this.Height) return 0;
             int extraheight = (pPanelContainer.Height - this.Height);
             return (-pPanelContainer.Top) * 100 / extraheight;
         }

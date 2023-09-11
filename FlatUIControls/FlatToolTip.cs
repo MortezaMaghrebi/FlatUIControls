@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -83,16 +84,9 @@ namespace FlatUIControls
 
         private void FlatToolTip_Load(object sender, EventArgs e)
         {
-            string fontName = "Nunito"; // Replace with the actual font name
-            float fontSize = 12.5F; // Set the desired font size
-
-            // Load the custom font
-            FontFamily fontFamily = new FontFamily(fontName);
-            Font customFont;
-            // Create a font object using the custom font family and size
-            if (this.Parent != null) customFont = new Font(fontFamily, fontSize, FontStyle.Regular, GraphicsUnit.Pixel);
-            else customFont = new Font(fontFamily, fontSize, FontStyle.Bold, GraphicsUnit.Pixel);
-            // Assign the custom font to a control (e.g., a Label)
+            PrivateFontCollection modernFont = new PrivateFontCollection();
+            modernFont.AddFontFile("Nunito-Regular.ttf");
+            Font customFont = new Font(modernFont.Families[0], 10.5F, FontStyle.Regular);
             lToolTip.Font = customFont;
         }
     }

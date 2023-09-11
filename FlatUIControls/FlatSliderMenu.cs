@@ -79,11 +79,7 @@ namespace FlatUIControls
 
         public void SendItemClickEvent(object sender,EventArgs e)
         {
-            //flatMenu1.ScrollValue = 0;
-            //flatMenu1.pPanelContainer.Top = 0;
-            //flatMenu1.Invalidate();
             flatMenu1.ScrollValue = flatMenu1.getCurrentScroll();
-
             if(OnItemClick != null) OnItemClick(sender, e);
         }
 
