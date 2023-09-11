@@ -149,6 +149,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\demo.gif" />
+    <None Include="Resources\header.jpg" />
+    <None Include="Resources\flat-design-abstract-background_23-2149116116.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

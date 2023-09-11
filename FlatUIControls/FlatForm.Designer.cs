@@ -156,6 +156,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.BackgroundImage = global::FlatUIControls.Properties.Resources.header;
             this.ClientSize = new System.Drawing.Size(646, 441);
             this.Controls.Add(this.bMaximize);
             this.Controls.Add(this.bMinimize);
@@ -175,11 +176,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Button bExit;
-        private System.Windows.Forms.Button bMinimize;
-        private System.Windows.Forms.Button bMaximize;
-        private System.Windows.Forms.Panel pMain;
-        private System.Windows.Forms.Panel pBody;
+        public System.Windows.Forms.Button bExit;
+        public System.Windows.Forms.Button bMinimize;
+        public System.Windows.Forms.Button bMaximize;
+        public System.Windows.Forms.Panel pMain;
+        public System.Windows.Forms.Panel pBody;
         public FlatSliderMenu flatSliderMenu1;
     }
 }

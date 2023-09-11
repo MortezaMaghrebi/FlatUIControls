@@ -366,7 +366,10 @@ namespace FlatUIControls
             if(mouseenter)
             {
                 mouseon++;
-                if(mouseon == 5 && !this.ShowCaption)
+                Point location = this.PointToScreen(Point.Empty);
+                location.X  += 60;
+                location.Y += this.Height/3;
+                if (mouseon == 5 && !this.ShowCaption)
                 {
                     new Thread(() =>
                     {
@@ -375,7 +378,7 @@ namespace FlatUIControls
                         if (tooltip == null) tooltip = new FlatToolTip();
                         tooltip.TooltipShowDuration = 3000;
                         tooltip.TooltipText = this.Caption;
-                        tooltip.ShowTooltip(new Point(Cursor.Position.X + 20, Cursor.Position.Y));
+                        tooltip.ShowTooltip( new Point(location.X , location.Y));
                         tooltip.Refresh();
                         System.Threading.Thread.Sleep(2000);
                         tooltip.Close();
@@ -400,7 +403,9 @@ namespace FlatUIControls
 
         private void FlatItemButton_MouseLeave(object sender, EventArgs e)
         {
-            //mouseenter = false;
+            //
+            //
+            if(mouseon<5)    mouseenter = false;
             //if(tooltip != null)tooltip.HideTooltip();
         }
     }
