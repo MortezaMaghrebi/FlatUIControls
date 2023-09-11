@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.FlatItemButton = new System.Windows.Forms.Button();
-            this.child = new FlatUIControls.FlatMenu();
             this.timerToolTip = new System.Windows.Forms.Timer(this.components);
+            this.child = new FlatUIControls.FlatMenu();
             this.SuspendLayout();
             // 
             // FlatItemButton
@@ -42,7 +42,7 @@
             this.FlatItemButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(239)))), ((int)(((byte)(41)))), ((int)(((byte)(84)))));
             this.FlatItemButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(239)))), ((int)(((byte)(41)))), ((int)(((byte)(84)))));
             this.FlatItemButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.FlatItemButton.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FlatItemButton.Font = new System.Drawing.Font("Open Sans", 10.5F);
             this.FlatItemButton.ForeColor = System.Drawing.Color.White;
             this.FlatItemButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.FlatItemButton.Location = new System.Drawing.Point(0, 0);
@@ -59,6 +59,11 @@
             this.FlatItemButton.MouseEnter += new System.EventHandler(this.FlatItemButton_MouseEnter);
             this.FlatItemButton.MouseLeave += new System.EventHandler(this.FlatItemButton_MouseLeave);
             // 
+            // timerToolTip
+            // 
+            this.timerToolTip.Enabled = true;
+            this.timerToolTip.Tick += new System.EventHandler(this.timerToolTip_Tick);
+            // 
             // child
             // 
             this.child.AutoSize = true;
@@ -74,11 +79,6 @@
             this.child.Size = new System.Drawing.Size(100, 23);
             this.child.TabIndex = 1;
             this.child.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(41)))), ((int)(((byte)(84)))));
-            // 
-            // timerToolTip
-            // 
-            this.timerToolTip.Enabled = true;
-            this.timerToolTip.Tick += new System.EventHandler(this.timerToolTip_Tick);
             // 
             // FlatMenuItem
             // 

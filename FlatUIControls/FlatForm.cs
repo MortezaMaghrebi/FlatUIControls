@@ -15,10 +15,10 @@ namespace FlatUIControls
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
+        ///[System.Runtime.InteropServices.DllImport("user32.dll")]
+        ///public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        ///[System.Runtime.InteropServices.DllImport("user32.dll")]
+        ///public static extern bool ReleaseCapture();
 
         public FlatForm()
         {
@@ -31,25 +31,25 @@ namespace FlatUIControls
         private const int cGrip = 16;      // Grip size
         private const int cCaption = 32;   // Caption bar height;
 
-        protected override void WndProc(ref Message m)
-        {
-            if (m.Msg == 0x84)
-            {  // Trap WM_NCHITTEST
-                Point pos = new Point(m.LParam.ToInt32());
-                pos = this.PointToClient(pos);
-                if (pos.Y < cCaption)
-                {
-                    m.Result = (IntPtr)2;  // HTCAPTION
-                    return;
-                }
-                if (pos.X >= this.ClientSize.Width - cGrip && pos.Y >= this.ClientSize.Height - cGrip)
-                {
-                    m.Result = (IntPtr)17; // HTBOTTOMRIGHT
-                    return;
-                }
-            }
-            base.WndProc(ref m);
-        }
+        //protected override void WndProc(ref Message m)
+        //{
+        //    if (m.Msg == 0x84)
+        //    {  // Trap WM_NCHITTEST
+        //        Point pos = new Point(m.LParam.ToInt32());
+        //        pos = this.PointToClient(pos);
+        //        if (pos.Y < cCaption)
+        //        {
+        //            m.Result = (IntPtr)2;  // HTCAPTION
+        //            return;
+        //        }
+        //        if (pos.X >= this.ClientSize.Width - cGrip && pos.Y >= this.ClientSize.Height - cGrip)
+        //        {
+        //            m.Result = (IntPtr)17; // HTBOTTOMRIGHT
+        //            return;
+        //        }
+        //    }
+        //    base.WndProc(ref m);
+        //}
 
         private void FlatForm_Paint(object sender, PaintEventArgs e)
         {
@@ -119,8 +119,8 @@ namespace FlatUIControls
         {
             if (e.Button == MouseButtons.Left)
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+               // ReleaseCapture();
+               // SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
 

@@ -61,9 +61,21 @@ namespace FlatUIControls
 
         public void HideTooltip()
         {
-            this.Hide();
-            isshown = false;
-            timer1.Stop();
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(() =>
+                {
+                    this.Hide();
+                    isshown = false;
+                    timer1.Stop();
+                }));
+            }
+            else
+            {
+                this.Hide();
+                isshown = false;
+                timer1.Stop();
+            }
         }
 
         private void lToolTip_Resize(object sender, EventArgs e)
@@ -84,10 +96,10 @@ namespace FlatUIControls
 
         private void FlatToolTip_Load(object sender, EventArgs e)
         {
-            PrivateFontCollection modernFont = new PrivateFontCollection();
-            modernFont.AddFontFile("Nunito-Regular.ttf");
-            Font customFont = new Font(modernFont.Families[0], 10.5F, FontStyle.Regular);
-            lToolTip.Font = customFont;
+            //PrivateFontCollection modernFont = new PrivateFontCollection();
+            //modernFont.AddFontFile("Nunito-Regular.ttf");
+            //Font customFont = new Font(modernFont.Families[0], 10.5F, FontStyle.Regular);
+            //lToolTip.Font = customFont;
         }
     }
 }

@@ -178,7 +178,7 @@ namespace FlatUIControls
                 int i = 50;
                 {
                     this.Width = i;
-                    Application.DoEvents();
+                    //Application.DoEvents();
                 }
                 collapsed = true;
             }else 
@@ -186,7 +186,7 @@ namespace FlatUIControls
                 int i= _DesiredWidth;
                 {
                     this.Width = i;
-                    Application.DoEvents();
+                    //Application.DoEvents();
                 }
                 //dontresize=false;
                 collapsed = false;

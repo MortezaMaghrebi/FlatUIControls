@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace FlatUIControls
@@ -20,18 +21,17 @@ namespace FlatUIControls
         private void FlatMenu_Load(object sender, EventArgs e)
         {
             this.MouseWheel += new MouseEventHandler(FlautMenu_MouseWheel);
-            //pItemContainer.Left = 0;
-            //pItemContainer.Width = this.Width;
-            //pItemContainer.Top = 0;
             pPanelContainer.Left = 0;
             pPanelContainer.Width = this.Width-5;
             pPanelContainer.Top = 0;
             _ScrollValue = 0;
+
         }
+       
 
         public int getCurrentScroll()
         {
-            Application.DoEvents();
+            //Application.DoEvents();
             if (pPanelContainer.Height < this.Height) return 0;
             int extraheight = (pPanelContainer.Height - this.Height);
             return (-pPanelContainer.Top) * 100 / extraheight;
@@ -39,6 +39,7 @@ namespace FlatUIControls
 
         bool _wheelok = true;
         Graphics g = null;
+        double newScrollValue = 0;
         private void FlautMenu_MouseWheel(object sender, MouseEventArgs e)
         {// Determine whether the mouse wheel was scrolled up or down.
             if(!_wheelok) return;
@@ -55,7 +56,7 @@ namespace FlatUIControls
             }
             if (dH > 0)
             {
-                double newScrollValue = 0;
+                //double newScrollValue = 0;
                 if (e.Delta > 0)
                 {
                     newScrollValue = _ScrollValue- Dscroll;
@@ -67,23 +68,33 @@ namespace FlatUIControls
                     newScrollValue = _ScrollValue + Dscroll;
                     if (newScrollValue > 100) newScrollValue = 100;
                 }
-                double scrollvalue = _ScrollValue;
-                while (Math.Abs(scrollvalue - newScrollValue) > 1)
+               // tScroller.Start();
+                new System.Threading.Thread(() =>
                 {
-                    scrollvalue = newScrollValue * 0.2 + scrollvalue * 0.8;
-                    double target = (-dH * scrollvalue / 100);
-                    double top = target;
-                    pPanelContainer.Top = (int)top;
-                    _ScrollValue = (int)scrollvalue;
-                    System.Threading.Thread.Sleep(1);
-                    this.Invalidate();
-                    Application.DoEvents();
+                    Thread.CurrentThread.IsBackground = true;
 
-                }
-                _ScrollValue = (int)newScrollValue;
-                pPanelContainer.Top = (int)(-dH * _ScrollValue / 100);
-                Application.DoEvents();
+                    double scrollvalue = _ScrollValue;
+                    while (Math.Abs(scrollvalue - newScrollValue) > 1)
+                    {
+                        this.Invoke(new MethodInvoker(() =>
+                        {
+                            scrollvalue = newScrollValue * 0.2 + scrollvalue * 0.8;
+                            double target = (-dH * scrollvalue / 100);
+                            double top = target;
+                            pPanelContainer.Top = (int)top;
+                            _ScrollValue = (int)scrollvalue;
+                            this.Invalidate();
+                        }));
+                        System.Threading.Thread.Sleep(1);
 
+                    }
+
+                    _ScrollValue = (int)newScrollValue;
+                    this.Invoke(new MethodInvoker(() =>
+                    {
+                        pPanelContainer.Top = (int)(-dH * _ScrollValue / 100);
+                    }));
+                }).Start();
             }
             else
             {
@@ -113,9 +124,8 @@ namespace FlatUIControls
             }
         }
 
-     
 
-    
+
        
         private int _ScrollValue=0;
         public int ScrollValue

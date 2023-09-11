@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace FlatUIControls
@@ -62,12 +63,6 @@ namespace FlatUIControls
             child.Visible = false;
             //foreach(FlatMenuItem item in this.ch)
             if (Caption == null) Caption = this.Name + k++;
-            PrivateFontCollection modernFont = new PrivateFontCollection();
-            modernFont.AddFontFile("Nunito-Regular.ttf");
-            Font customFont = new Font(modernFont.Families[0], 10.5F, FontStyle.Regular);
-            // Assuming you have a button named 'myButton'.
-            FlatItemButton.Font = customFont; // Assign the custom font to the button.
-
         }
 
         bool painted = false;
@@ -100,28 +95,90 @@ namespace FlatUIControls
 
         private void FlatItemButton_Click(object sender, EventArgs e)
         {
-            if (child.Items.Length > 0)
+            new System.Threading.Thread(() =>
             {
-                child.Visible = !child.Visible;
-                foreach (FlatMenuItem item in child.Items)
+                Thread.CurrentThread.IsBackground = true;
+                if (child.Items.Length > 0)
                 {
-                    Application.DoEvents();
-                    item.ShowCaption = item.ShowCaption; //refresh children view
+                    if (child.InvokeRequired)
+                    {
+                        child.Invoke(new MethodInvoker(() =>
+                        {
+                            child.Visible = !child.Visible;
+                        }));
+                    }
+                    else { child.Visible = !child.Visible; }
+                    foreach (FlatMenuItem item in child.Items)
+                    {
+                        //Application.DoEvents();
+                        //item.Invalidate();
+                        if (item.InvokeRequired)
+                        {
+                            item.Invoke(new MethodInvoker(() =>
+                            {
+                                item.ShowCaption = item.ShowCaption; //refresh children view}));
+                                }));
+                        }
+                        else item.ShowCaption = item.ShowCaption;
+
+                    }
                 }
-            }
-            else
-            {
-                if (Parent != null)
+                else
                 {
-                    _Parent.CollapseMenu();
-                    _Parent.Invalidate();
+                    if (Parent != null)
+                    {
+                        if (Parent.InvokeRequired)
+                        {
+                            Parent.Invoke(new MethodInvoker(() =>
+                            {
+                                Parent.CollapseMenu();
+                                Parent.Invalidate();
+                            }));
+                        }
+                        else
+                        {
+                            Parent.CollapseMenu();
+                            Parent.Invalidate();
+                        }
+                    }
+
                 }
-            }
-            if (SliderMenuParent != null)
-            {
-                SliderMenuParent.SendItemClickEvent(this, e);
-                SliderMenuParent.Invalidate();
-            }
+                if (SliderMenuParent != null)
+                {
+                    if (SliderMenuParent.InvokeRequired)
+                    {
+                        SliderMenuParent.Invoke(new MethodInvoker(() =>
+                        {
+                            SliderMenuParent.SendItemClickEvent(this, e);
+                            SliderMenuParent.Invalidate();
+                        }));
+                    }
+                    else
+                    {
+                        SliderMenuParent.SendItemClickEvent(this, e);
+                        SliderMenuParent.Invalidate();
+                    }
+
+                }
+                System.Threading.Thread.Sleep(100);
+                if (SliderMenuParent != null)
+                {
+                    if (SliderMenuParent.InvokeRequired)
+                    {
+                        SliderMenuParent.Invoke(new MethodInvoker(() =>
+                        {
+                            SliderMenuParent.ScrollValue=0;
+                        }));
+                    }
+                    else
+                    {
+                        SliderMenuParent.ScrollValue = 0;
+                    }
+
+                }
+            }).Start();
+
+            
         }
 
         private FlatMenuItem Parent
@@ -309,18 +366,29 @@ namespace FlatUIControls
             if(mouseenter)
             {
                 mouseon++;
-                if(mouseon > 5 && !this.ShowCaption)
+                if(mouseon == 5 && !this.ShowCaption)
                 {
-                    if (tooltip == null) tooltip = new FlatToolTip();
-                    tooltip.TooltipShowDuration = 3000;
-                    tooltip.TooltipText = this.Caption;
-                    tooltip.ShowTooltip(new Point(Cursor.Position.X+20, Cursor.Position.Y));
-                    this.Focus();
+                    new Thread(() =>
+                    {
+                        Thread.CurrentThread.IsBackground = true;
+                        tooltip = new FlatToolTip();
+                        if (tooltip == null) tooltip = new FlatToolTip();
+                        tooltip.TooltipShowDuration = 3000;
+                        tooltip.TooltipText = this.Caption;
+                        tooltip.ShowTooltip(new Point(Cursor.Position.X + 20, Cursor.Position.Y));
+                        tooltip.Refresh();
+                        System.Threading.Thread.Sleep(2000);
+                        tooltip.Close();
+                        tooltip.Dispose();
+                        mouseenter = false;
+                    }).Start();
+                }else if(mouseon == 30 && !this.ShowCaption)
+                {
+                    mouseon = 0;
                 }
             }else
             {
                 mouseon = 0;
-                
             }
         }
 
@@ -332,8 +400,8 @@ namespace FlatUIControls
 
         private void FlatItemButton_MouseLeave(object sender, EventArgs e)
         {
-            mouseenter = false;
-            if(tooltip != null)tooltip.HideTooltip();
+            //mouseenter = false;
+            //if(tooltip != null)tooltip.HideTooltip();
         }
     }
 }
