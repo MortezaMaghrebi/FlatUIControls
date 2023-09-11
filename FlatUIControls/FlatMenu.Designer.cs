@@ -42,6 +42,7 @@
             this.pPanelContainer.Name = "pPanelContainer";
             this.pPanelContainer.Size = new System.Drawing.Size(80, 100);
             this.pPanelContainer.TabIndex = 1;
+            this.pPanelContainer.Resize += new System.EventHandler(this.pPanelContainer_Resize);
             // 
             // pItemContainer
             // 

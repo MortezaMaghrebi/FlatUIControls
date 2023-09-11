@@ -189,5 +189,26 @@ namespace FlatUIControls
             }
 
         }
+
+        private void pPanelContainer_Resize(object sender, EventArgs e)
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                System.Threading.Thread.Sleep(50);
+                if (pPanelContainer.Height < this.Height)
+                {
+                    if (pPanelContainer.InvokeRequired)
+                    {
+                        pPanelContainer.Invoke(new Action(() =>
+                        {
+                            pPanelContainer.Top = 0;
+                        }));
+                    }
+                    else pPanelContainer.Top = 0;
+                }
+            }).Start();
+            
+        }
     }
 }
