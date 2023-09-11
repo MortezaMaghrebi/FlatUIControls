@@ -69,6 +69,12 @@
     <Compile Include="FlatSliderMenu.Designer.cs">
       <DependentUpon>FlatSliderMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="FlatToolTip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FlatToolTip.Designer.cs">
+      <DependentUpon>FlatToolTip.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -90,6 +96,9 @@
     <EmbeddedResource Include="FlatSliderMenu.resx">
       <DependentUpon>FlatSliderMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FlatToolTip.resx">
+      <DependentUpon>FlatToolTip.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -97,7 +106,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="NunitoLight.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\trophy_cup_64px.png" />
+    <None Include="robotolight.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\LogoWhite - Small.png" />

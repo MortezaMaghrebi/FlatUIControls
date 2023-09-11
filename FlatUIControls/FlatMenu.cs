@@ -29,6 +29,13 @@ namespace FlatUIControls
             _ScrollValue = 0;
         }
 
+        public int getCurrentScroll()
+        {
+            Application.DoEvents();
+            int extraheight = (pPanelContainer.Height - this.Height);
+            return (-pPanelContainer.Top) * 100 / extraheight;
+        }
+
         bool _wheelok = true;
         Graphics g = null;
         private void FlautMenu_MouseWheel(object sender, MouseEventArgs e)

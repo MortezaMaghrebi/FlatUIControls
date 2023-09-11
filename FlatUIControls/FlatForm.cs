@@ -218,5 +218,10 @@ namespace FlatUIControls
             get { return this.flatSliderMenu1; }
             set { this.flatSliderMenu1 = value;}
         }
+
+        private void pBody_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

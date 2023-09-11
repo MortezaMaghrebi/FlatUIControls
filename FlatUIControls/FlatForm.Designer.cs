@@ -32,8 +32,8 @@
             this.bMinimize = new System.Windows.Forms.Button();
             this.bExit = new System.Windows.Forms.Button();
             this.pMain = new System.Windows.Forms.Panel();
-            this.flatSliderMenu1 = new FlatUIControls.FlatSliderMenu();
             this.pBody = new System.Windows.Forms.Panel();
+            this.flatSliderMenu1 = new FlatUIControls.FlatSliderMenu();
             this.pMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -122,6 +122,16 @@
             this.pMain.Size = new System.Drawing.Size(638, 409);
             this.pMain.TabIndex = 5;
             // 
+            // pBody
+            // 
+            this.pBody.BackColor = System.Drawing.Color.Transparent;
+            this.pBody.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pBody.Location = new System.Drawing.Point(192, 0);
+            this.pBody.Name = "pBody";
+            this.pBody.Size = new System.Drawing.Size(446, 409);
+            this.pBody.TabIndex = 6;
+            this.pBody.Paint += new System.Windows.Forms.PaintEventHandler(this.pBody_Paint);
+            // 
             // flatSliderMenu1
             // 
             this.flatSliderMenu1.BackColor = System.Drawing.Color.Transparent;
@@ -140,14 +150,6 @@
             this.flatSliderMenu1.SmallLogoImage = null;
             this.flatSliderMenu1.TabIndex = 5;
             this.flatSliderMenu1.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(41)))), ((int)(((byte)(84)))));
-            // 
-            // pBody
-            // 
-            this.pBody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pBody.Location = new System.Drawing.Point(192, 0);
-            this.pBody.Name = "pBody";
-            this.pBody.Size = new System.Drawing.Size(446, 409);
-            this.pBody.TabIndex = 6;
             // 
             // FlatForm
             // 

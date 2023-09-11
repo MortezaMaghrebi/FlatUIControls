@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.FlatItemButton = new System.Windows.Forms.Button();
             this.child = new FlatUIControls.FlatMenu();
+            this.timerToolTip = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // FlatItemButton
@@ -40,7 +42,7 @@
             this.FlatItemButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(239)))), ((int)(((byte)(41)))), ((int)(((byte)(84)))));
             this.FlatItemButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(239)))), ((int)(((byte)(41)))), ((int)(((byte)(84)))));
             this.FlatItemButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.FlatItemButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.FlatItemButton.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FlatItemButton.ForeColor = System.Drawing.Color.White;
             this.FlatItemButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.FlatItemButton.Location = new System.Drawing.Point(0, 0);
@@ -54,6 +56,8 @@
             this.FlatItemButton.UseCompatibleTextRendering = true;
             this.FlatItemButton.UseVisualStyleBackColor = true;
             this.FlatItemButton.Click += new System.EventHandler(this.FlatItemButton_Click);
+            this.FlatItemButton.MouseEnter += new System.EventHandler(this.FlatItemButton_MouseEnter);
+            this.FlatItemButton.MouseLeave += new System.EventHandler(this.FlatItemButton_MouseLeave);
             // 
             // child
             // 
@@ -69,6 +73,12 @@
             this.child.ScrollValue = 0;
             this.child.Size = new System.Drawing.Size(100, 23);
             this.child.TabIndex = 1;
+            this.child.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(41)))), ((int)(((byte)(84)))));
+            // 
+            // timerToolTip
+            // 
+            this.timerToolTip.Enabled = true;
+            this.timerToolTip.Tick += new System.EventHandler(this.timerToolTip_Tick);
             // 
             // FlatMenuItem
             // 
@@ -92,5 +102,6 @@
 
         private System.Windows.Forms.Button FlatItemButton;
         private FlatMenu child;
+        private System.Windows.Forms.Timer timerToolTip;
     }
 }

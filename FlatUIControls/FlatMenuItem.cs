@@ -12,12 +12,13 @@ namespace FlatUIControls
     public partial class FlatMenuItem : UserControl
     {
         public static int k = 0;
+        FlatToolTip tooltip;
         public FlatMenuItem()
         {
             InitializeComponent();
             if (Caption != null && Caption == "---Item-") Caption = this.Name;
             else if (Caption != null && Caption.Length == 0) Caption = "MenuItem";
-
+           
         }
 
         public FlatMenuItem(string Key,String caption, ImageList imageList, int imageIndex)
@@ -39,6 +40,8 @@ namespace FlatUIControls
             this.Parent = parent;
         }
 
+
+
         public FlatMenuItem(string Key, String caption)
         {
             InitializeComponent();
@@ -58,6 +61,18 @@ namespace FlatUIControls
             child.Visible = false;
             //foreach(FlatMenuItem item in this.ch)
             if (Caption == null) Caption = this.Name + k++;
+
+            string fontName = "Nunito"; // Replace with the actual font name
+            float fontSize = 12.5F; // Set the desired font size
+
+            // Load the custom font
+            FontFamily fontFamily = new FontFamily(fontName);
+            Font customFont;
+            // Create a font object using the custom font family and size
+            if (this.Parent != null) customFont = new Font(fontFamily, fontSize, FontStyle.Regular, GraphicsUnit.Pixel);
+            else customFont = new Font(fontFamily, fontSize, FontStyle.Bold, GraphicsUnit.Pixel);
+            // Assign the custom font to a control (e.g., a Label)
+            FlatItemButton.Font = customFont;
         }
 
         bool painted = false;
@@ -293,5 +308,37 @@ namespace FlatUIControls
             set { this._Key = value; }
         }
 
+        int mouseon = 0;
+        private void timerToolTip_Tick(object sender, EventArgs e)
+        {
+            if(mouseenter)
+            {
+                mouseon++;
+                if(mouseon > 5 && !this.ShowCaption)
+                {
+                    if (tooltip == null) tooltip = new FlatToolTip();
+                    tooltip.TooltipShowDuration = 3000;
+                    tooltip.TooltipText = this.Caption;
+                    tooltip.ShowTooltip(new Point(Cursor.Position.X+20, Cursor.Position.Y));
+                    this.Focus();
+                }
+            }else
+            {
+                mouseon = 0;
+                
+            }
+        }
+
+        bool mouseenter = false;
+        private void FlatItemButton_MouseEnter(object sender, EventArgs e)
+        {
+            mouseenter = true;
+        }
+
+        private void FlatItemButton_MouseLeave(object sender, EventArgs e)
+        {
+            mouseenter = false;
+            if(tooltip != null)tooltip.HideTooltip();
+        }
     }
 }
